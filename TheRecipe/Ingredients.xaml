@@ -20,7 +20,7 @@
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="10"/>
         </Grid.ColumnDefinitions>
-        <Label Content="Add Ingredient" HorizontalAlignment="Left" Margin="2,1,0,0" VerticalAlignment="Top" FontSize="20" Grid.Row="1" Grid.Column="1"/>
+        <Label Content="Add Ingredient" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top" FontSize="20" Grid.Row="1" Grid.Column="1"/>
         <TextBox Height="23" TextWrapping="Wrap" Text="Apple" VerticalAlignment="Center" Grid.Row="2" Grid.Column="1" Margin="0,0,80,0" VerticalContentAlignment="Center"/>
         <Button Content="Add" HorizontalAlignment="Right" Margin="0" VerticalAlignment="Center" Width="75" Grid.Row="2" Grid.Column="1"/>
         <Button Content="Delete Ingredient" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="105" Grid.Row="3" Grid.Column="1"/>
@@ -31,7 +31,7 @@
             <ListBoxItem Content="Garlic"/>
             <ListBoxItem Content="Potatoes"/>
         </ListBox>
-        <Button Content="Go Back" HorizontalAlignment="Left" VerticalAlignment="Center" Width="75" Grid.Row="4" Grid.Column="1"/>
+        <Button x:Name="btnBack" Content="Go Back" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="75" Grid.Row="4" Grid.Column="1" Click="btnBack_Click"/>
 
     </Grid>
 </Window>

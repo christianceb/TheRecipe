@@ -23,5 +23,10 @@ namespace TheRecipe
     {
       InitializeComponent();
     }
+
+    private void btnBack_Click(object sender, RoutedEventArgs e)
+    {
+      Close();
+    }
   }
 }

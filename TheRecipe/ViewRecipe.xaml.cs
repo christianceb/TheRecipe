@@ -23,5 +23,16 @@ namespace TheRecipe
     {
       InitializeComponent();
     }
+
+    private void Button_Click(object sender, RoutedEventArgs e)
+    {
+      FormRecipe formRecipe = new FormRecipe();
+      formRecipe.ShowDialog();
+    }
+
+    private void btnBack_Click(object sender, RoutedEventArgs e)
+    {
+      Close();
+    }
   }
 }

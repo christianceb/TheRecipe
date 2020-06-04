@@ -9,12 +9,12 @@
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="File">
-                <MenuItem x:Name="mitIngredients" Header="Manage Ingredients"/>
+                <MenuItem x:Name="mitIngredients" Header="Manage Ingredients" Click="mitIngredients_Click"/>
                 <Separator/>
                 <MenuItem x:Name="mitSave" Header="Save Favorites"/>
                 <MenuItem x:Name="mitLoad" Header="Load Favorites File"/>
                 <Separator/>
-                <MenuItem x:Name="mitQuit" Header="Quit"/>
+                <MenuItem x:Name="mitQuit" Header="Quit" Click="mitQuit_Click"/>
             </MenuItem>
         </Menu>
         <StatusBar DockPanel.Dock="Bottom">
@@ -54,7 +54,7 @@
             </Grid.RowDefinitions>
 
             <Label Content="Recipes" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Grid.Row="1" Grid.Column="1" Margin="0"/>
-            <Button Content="New Recipe" HorizontalAlignment="Left" Margin="90,0,0,0" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" Width="75"/>
+            <Button x:Name="btnNewRecipe" Content="New Recipe" HorizontalAlignment="Left" Margin="90,0,0,0" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" Width="75" Click="btnNewRecipe_Click"/>
             <ListView Grid.Row="3" Grid.Column="1">
                 <ListView.View>
                     <GridView>
@@ -69,13 +69,13 @@
                 <ListBoxItem Content="Clogged arteries burger (45 mins)"/>
             </ListBox>
 
-            <Button Content="View" HorizontalAlignment="Left" VerticalAlignment="Center" Width="75" Grid.Row="5" Grid.Column="1"/>
-            <Button Content="Edit" HorizontalAlignment="Left" Margin="80,0,0,0" VerticalAlignment="Center" Grid.Row="5" Grid.Column="1" Width="75"/>
-            <Button Content="Delete" HorizontalAlignment="Left" Margin="160,0,0,0" VerticalAlignment="Center" Grid.Row="5" Grid.Column="1" Width="75"/>
+            <Button x:Name="btnView" Content="View" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="75" Grid.Row="5" Grid.Column="1" Click="btnView_Click"/>
+            <Button x:Name="btnEdit" Content="Edit" HorizontalAlignment="Left" Margin="80,0,0,0" VerticalAlignment="Bottom" Grid.Row="5" Grid.Column="1" Width="75" Click="btnEdit_Click"/>
+            <Button Content="Delete" HorizontalAlignment="Left" Margin="160,0,0,0" VerticalAlignment="Bottom" Grid.Row="5" Grid.Column="1" Width="75"/>
 
-            <Button Content="Favorite" HorizontalAlignment="Right" Margin="0" VerticalAlignment="Center" Width="75" Grid.Row="5" Grid.Column="1"/>
+            <Button Content="Favorite" HorizontalAlignment="Right" Margin="0" VerticalAlignment="Bottom" Width="75" Grid.Row="5" Grid.Column="1"/>
 
-            <Button Content="Remove from Favorites" HorizontalAlignment="Right" Margin="0" VerticalAlignment="Center" Width="135" Grid.Row="5" Grid.Column="3"/>
+            <Button Content="Remove from Favorites" HorizontalAlignment="Right" Margin="0" VerticalAlignment="Bottom" Width="135" Grid.Row="5" Grid.Column="3"/>
         </Grid>
     </DockPanel>
 </Window>

@@ -24,5 +24,34 @@ namespace TheRecipe
     {
       InitializeComponent();
     }
+
+    private void btnNewRecipe_Click(object sender, RoutedEventArgs e)
+    {
+      FormRecipe formRecipe = new FormRecipe();
+      formRecipe.ShowDialog();
+    }
+
+    private void btnEdit_Click(object sender, RoutedEventArgs e)
+    {
+      FormRecipe formRecipe = new FormRecipe();
+      formRecipe.ShowDialog();
+    }
+
+    private void btnView_Click(object sender, RoutedEventArgs e)
+    {
+      ViewRecipe viewRecipe = new ViewRecipe();
+      viewRecipe.ShowDialog();
+    }
+
+    private void mitQuit_Click(object sender, RoutedEventArgs e)
+    {
+      Close();
+    }
+
+    private void mitIngredients_Click(object sender, RoutedEventArgs e)
+    {
+      Ingredients ingredients = new Ingredients();
+      ingredients.ShowDialog();
+    }
   }
 }

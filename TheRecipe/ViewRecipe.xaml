@@ -59,8 +59,8 @@
                 <Label Content="4" HorizontalAlignment="Left" Margin="60,0,0,0" VerticalAlignment="Center" Grid.Column="2"/>
             </Grid>
         </Grid>
-        <Button Content="Edit" HorizontalAlignment="Right" Margin="0" VerticalAlignment="Center" Width="75" Grid.Column="4" Grid.Row="5"/>
-        <Button Content="Delete" HorizontalAlignment="Right" Margin="0,0,80,0" VerticalAlignment="Center" Width="75" Grid.Column="4" Grid.Row="5"/>
-        <Button Content="Back" HorizontalAlignment="Left" Margin="12,10,0,0" VerticalAlignment="Top" Width="75" Grid.Column="1" Grid.Row="5"/>
+        <Button Content="Edit" HorizontalAlignment="Right" Margin="0" VerticalAlignment="Bottom" Width="75" Grid.Column="4" Grid.Row="5" Click="Button_Click"/>
+        <Button Content="Delete" HorizontalAlignment="Right" Margin="0,0,80,0" VerticalAlignment="Bottom" Width="75" Grid.Column="4" Grid.Row="5"/>
+        <Button x:Name="btnBack" Content="Back" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Bottom" Width="75" Grid.Column="1" Grid.Row="5" Click="btnBack_Click"/>
     </Grid>
 </Window>
