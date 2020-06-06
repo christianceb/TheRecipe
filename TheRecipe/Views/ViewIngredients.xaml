@@ -21,17 +21,12 @@
             <ColumnDefinition Width="10"/>
         </Grid.ColumnDefinitions>
         <Label Content="Add Ingredient" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top" FontSize="20" Grid.Row="1" Grid.Column="1"/>
-        <TextBox Height="23" TextWrapping="Wrap" Text="Apple" VerticalAlignment="Center" Grid.Row="2" Grid.Column="1" Margin="0,0,80,0" VerticalContentAlignment="Center"/>
-        <Button Content="Add" HorizontalAlignment="Right" Margin="0" VerticalAlignment="Center" Width="75" Grid.Row="2" Grid.Column="1"/>
-        <Button Content="Delete Ingredient" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="105" Grid.Row="3" Grid.Column="1"/>
-        <ListBox Grid.Row="3" Grid.Column="1" Margin="0,1.667,0,25">
-            <ListBoxItem Content="Orange"/>
-            <ListBoxItem Content="Bananas"/>
-            <ListBoxItem Content="Tomatoes"/>
-            <ListBoxItem Content="Garlic"/>
-            <ListBoxItem Content="Potatoes"/>
-        </ListBox>
-        <Button x:Name="btnBack" Content="Go Back" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="75" Grid.Row="4" Grid.Column="1" Click="btnBack_Click"/>
+        <TextBox x:Name="TbIngredient" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Grid.Row="2" Grid.Column="1" Margin="0,0,80,0" VerticalContentAlignment="Center" />
+        <Button x:Name="BtnSave" Content="Add" HorizontalAlignment="Right" Margin="0" VerticalAlignment="Center" Width="75" Grid.Row="2" Grid.Column="1" Click="BtnSave_Click"/>
+        <Button x:Name="BtnDelete" Content="Delete" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="75" Grid.Row="3" Grid.Column="1" Click="BtnDelete_Click"/>
+        <ListBox x:Name="LbIngredients" Grid.Row="3" Grid.Column="1" Margin="0,0,0,25" ItemsSource="{Binding}" DisplayMemberPath="Name" SelectionChanged="LbIngredients_SelectionChanged"/>
+        <Button x:Name="BtnBack" Content="Go Back" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="75" Grid.Row="4" Grid.Column="1" Click="BtnBack_Click"/>
+        <Button x:Name="BtnClear" Content="Clear Selected" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="100" Grid.Row="3" Grid.Column="1" Margin="0,0,80,0" Click="BtnClear_Click"/>
 
     </Grid>
 </Window>

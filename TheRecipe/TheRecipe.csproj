@@ -64,32 +64,39 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="EditRecipe.xaml.cs">
+    <Compile Include="Collection.cs" />
+    <Compile Include="Collections\Ingredients.cs" />
+    <Compile Include="ICollection.cs" />
+    <Compile Include="Views\EditRecipe.xaml.cs">
       <DependentUpon>EditRecipe.xaml</DependentUpon>
     </Compile>
-    <Compile Include="FormRecipe.xaml.cs">
+    <Compile Include="Views\FormRecipe.xaml.cs">
       <DependentUpon>FormRecipe.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Ingredients.xaml.cs">
-      <DependentUpon>Ingredients.xaml</DependentUpon>
+    <Compile Include="Models\Ingredient.cs" />
+    <Compile Include="Views\ViewIngredients.xaml.cs">
+      <DependentUpon>ViewIngredients.xaml</DependentUpon>
     </Compile>
-    <Compile Include="RecipesModel.cs" />
-    <Compile Include="ViewRecipe.xaml.cs">
+    <Compile Include="Models\Recipe.cs" />
+    <Compile Include="Models\RecipeIngredient.cs" />
+    <Compile Include="Models\RecipesModel.cs" />
+    <Compile Include="Models\Step.cs" />
+    <Compile Include="Views\ViewRecipe.xaml.cs">
       <DependentUpon>ViewRecipe.xaml</DependentUpon>
     </Compile>
-    <Page Include="EditRecipe.xaml">
+    <Page Include="Views\EditRecipe.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="FormRecipe.xaml">
+    <Page Include="Views\FormRecipe.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Ingredients.xaml">
+    <Page Include="Views\ViewIngredients.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Recipes.xaml">
+    <Page Include="Views\ViewRecipes.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -97,11 +104,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Recipes.xaml.cs">
-      <DependentUpon>Recipes.xaml</DependentUpon>
+    <Compile Include="Views\ViewRecipes.xaml.cs">
+      <DependentUpon>ViewRecipes.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="ViewRecipe.xaml">
+    <Page Include="Views\ViewRecipe.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

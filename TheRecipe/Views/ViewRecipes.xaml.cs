@@ -20,6 +20,8 @@ namespace TheRecipe
   /// </summary>
   public partial class ViewRecipes : Window
   {
+    RecipesModel Db = new RecipesModel();
+
     public ViewRecipes()
     {
       InitializeComponent();
@@ -50,7 +52,7 @@ namespace TheRecipe
 
     private void mitIngredients_Click(object sender, RoutedEventArgs e)
     {
-      ViewIngredients viewIngredients = new ViewIngredients();
+      ViewIngredients viewIngredients = new ViewIngredients(Db);
       viewIngredients.ShowDialog();
     }
   }
