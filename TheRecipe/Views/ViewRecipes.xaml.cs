@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace TheRecipe
 {
   /// <summary>
-  /// Interaction logic for Recipes.xaml
+  /// Interaction logic for ViewRecipes.xaml
   /// </summary>
-  public partial class Recipes : Window
+  public partial class ViewRecipes : Window
   {
-    public Recipes()
+    public ViewRecipes()
     {
       InitializeComponent();
     }
@@ -50,8 +50,8 @@ namespace TheRecipe
 
     private void mitIngredients_Click(object sender, RoutedEventArgs e)
     {
-      Ingredients ingredients = new Ingredients();
-      ingredients.ShowDialog();
+      ViewIngredients viewIngredients = new ViewIngredients();
+      viewIngredients.ShowDialog();
     }
   }
 }

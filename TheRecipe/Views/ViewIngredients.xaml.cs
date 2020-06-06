@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace TheRecipe
 {
   /// <summary>
-  /// Interaction logic for Ingredients.xaml
+  /// Interaction logic for ViewIngredients.xaml
   /// </summary>
-  public partial class Ingredients : Window
+  public partial class ViewIngredients : Window
   {
-    public Ingredients()
+    public ViewIngredients()
     {
       InitializeComponent();
     }
