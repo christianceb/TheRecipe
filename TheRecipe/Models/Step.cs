@@ -4,15 +4,15 @@ namespace TheRecipe
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
+  using System.Data;
+  using System.Data.Entity.Spatial;
 
     public partial class Step
     {
         public int Id { get; set; }
 
-        [Column("Step")]
+        [Column(TypeName="Text")]
         [Required]
-        [StringLength(255)]
         public string Content { get; set; }
 
         public byte? Order { get; set; }
