@@ -12,6 +12,7 @@ namespace TheRecipe
     {
     }
 
+    public virtual DbSet<Category> Categories { get; set; }
     public virtual DbSet<Ingredient> Ingredients { get; set; }
     public virtual DbSet<RecipeIngredient> RecipeIngredients { get; set; }
     public virtual DbSet<Recipe> Recipes { get; set; }
@@ -19,6 +20,10 @@ namespace TheRecipe
 
     protected override void OnModelCreating(DbModelBuilder modelBuilder)
     {
+      modelBuilder.Entity<Category>()
+          .Property(e => e.Name)
+          .IsUnicode(false);
+
       modelBuilder.Entity<Ingredient>()
           .Property(e => e.Name)
           .IsUnicode(false);
@@ -31,6 +36,14 @@ namespace TheRecipe
       modelBuilder.Entity<Recipe>()
           .Property(e => e.Title)
           .IsUnicode(false);
+
+      modelBuilder.Entity<Recipe>()
+          .Property(e => e.Time)
+          .IsUnicode(false);
+
+      modelBuilder.Entity<Recipe>()
+          .Property(e => e.Cost)
+          .HasPrecision(18, 0);
 
       modelBuilder.Entity<Step>()
           .Property(e => e.Step1)

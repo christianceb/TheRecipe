@@ -64,9 +64,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Collection.cs" />
+    <Compile Include="Abstracts\Collection.cs" />
     <Compile Include="Collections\Ingredients.cs" />
-    <Compile Include="ICollection.cs" />
+    <Compile Include="Interfaces\ICollection.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Views\EditRecipe.xaml.cs">
       <DependentUpon>EditRecipe.xaml</DependentUpon>
     </Compile>

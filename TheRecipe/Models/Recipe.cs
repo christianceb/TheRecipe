@@ -21,6 +21,17 @@ namespace TheRecipe
         [StringLength(50)]
         public string Title { get; set; }
 
+        [StringLength(50)]
+        public string Time { get; set; }
+
+        public decimal? Cost { get; set; }
+
+        public byte? Servings { get; set; }
+
+        public int? CategoryId { get; set; }
+
+        public virtual Category Category { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual System.Collections.Generic.ICollection<RecipeIngredient> RecipeIngredients { get; set; }
 

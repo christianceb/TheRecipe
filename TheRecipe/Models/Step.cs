@@ -13,7 +13,7 @@ namespace TheRecipe
         [Column("Step")]
         [Required]
         [StringLength(255)]
-        public string Step1 { get; set; }
+        public string Content { get; set; }
 
         public byte? Order { get; set; }
 
