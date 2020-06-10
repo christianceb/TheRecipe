@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TheRecipe"
         mc:Ignorable="d"
-        Title="Recipes" Height="450" Width="800">
+        Title="Recipes" Height="450" Width="800" Closing="Window_Closing" Loaded="Window_Loaded">
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="File">
                 <MenuItem x:Name="MitIngredients" Header="Manage Ingredients" Click="MitIngredients_Click"/>
                 <Separator/>
-                <MenuItem x:Name="MitSave" Header="Save Favorites"/>
-                <MenuItem x:Name="MitLoad" Header="Load Favorites File"/>
+                <MenuItem x:Name="MitSave" Header="Save Favorites as" Click="MitSave_Click"/>
+                <MenuItem x:Name="MitLoad" Header="Load Favorites File" Click="MitLoad_Click"/>
                 <Separator/>
                 <MenuItem x:Name="MitQuit" Header="Quit" Click="MitQuit_Click"/>
             </MenuItem>
@@ -38,10 +38,9 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="10"/>
-                <ColumnDefinition Width="12*"/>
-                <ColumnDefinition Width="445*"/>
+                <ColumnDefinition Width="7*"/>
                 <ColumnDefinition Width="10"/>
-                <ColumnDefinition Width="305*"/>
+                <ColumnDefinition Width="4*"/>
                 <ColumnDefinition Width="10"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
@@ -56,7 +55,7 @@
 
             <Label Content="Recipes" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Grid.Row="1" Grid.Column="1" Margin="0" Grid.ColumnSpan="2"/>
             <Button x:Name="BtnNewRecipe" Content="New Recipe" HorizontalAlignment="Left" Margin="78.359,9,0,9" VerticalAlignment="Center" Grid.Row="1" Grid.Column="2" Width="75" Click="BtnNewRecipe_Click"/>
-            <ListView x:Name="LvRecipes" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" SelectionChanged="LvRecipes_SelectionChanged">
+            <ListView x:Name="LvRecipes" Grid.Row="3" Grid.Column="1" SelectionChanged="LvRecipes_SelectionChanged">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Width="25" DisplayMemberBinding="{Binding Id}">
@@ -78,20 +77,18 @@
                 </ListView.View>
             </ListView>
 
-            <Label Content="Favorites" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Grid.Row="1" Grid.Column="4" Margin="0,1"/>
-            <ListBox Grid.Row="3" Grid.Column="4">
-                <ListBoxItem Content="Creamy Macaroni (5 mins)"/>
-                <ListBoxItem Content="Clogged arteries burger (45 mins)"/>
-            </ListBox>
+            <Label Content="Favorites" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Grid.Row="1" Grid.Column="3" Margin="0,1"/>
+            <ListBox x:Name="LbFavorites" Grid.Row="3" Grid.Column="3" SelectionChanged="LbFavorites_SelectionChanged" DisplayMemberPath="Title" />
 
             <Button x:Name="BtnView" Content="View" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="75" Grid.Row="5" Grid.Column="1" Click="BtnView_Click" Grid.ColumnSpan="2"/>
-            <Button x:Name="BtnEdit" Content="Edit" HorizontalAlignment="Left" Margin="68.359,0,0,0" VerticalAlignment="Bottom" Grid.Row="5" Grid.Column="2" Width="75" Click="BtnEdit_Click"/>
-            <Button x:Name="BtnDelete" Content="Delete" HorizontalAlignment="Left" Margin="148.359,0,0,0" VerticalAlignment="Bottom" Grid.Row="5" Grid.Column="2" Width="75" Click="BtnDelete_Click"/>
-            <Button x:Name="BtnSearch" Content="Search" HorizontalAlignment="Left" Margin="226,0,0,0" VerticalAlignment="Bottom" Grid.Row="5" Grid.Column="2" Width="75" Click="BtnSearch_Click"/>
+            <Button x:Name="BtnEdit" Content="Edit" HorizontalAlignment="Left" Margin="80,0,0,0" VerticalAlignment="Bottom" Grid.Row="5" Grid.Column="1" Width="75" Click="BtnEdit_Click"/>
+            <Button x:Name="BtnDelete" Content="Delete" HorizontalAlignment="Left" Margin="160,0,0,0" VerticalAlignment="Bottom" Grid.Row="5" Grid.Column="1" Width="75" Click="BtnDelete_Click"/>
+            <Button x:Name="BtnSearch" Content="Search" HorizontalAlignment="Left" Margin="240,0,0,0" VerticalAlignment="Bottom" Grid.Row="5" Grid.Column="1" Width="75" Click="BtnSearch_Click"/>
 
-            <Button x:Name="BtnFavorite" Content="Favorite" HorizontalAlignment="Right" Margin="0" VerticalAlignment="Bottom" Width="75" Grid.Row="5" Grid.Column="2"/>
+            <Button x:Name="BtnFavorite" Content="Favorite" HorizontalAlignment="Right" Margin="0" VerticalAlignment="Bottom" Width="75" Grid.Row="5" Grid.Column="1" Click="BtnFavorite_Click"/>
 
-            <Button x:Name="BtnUnfavorite" Content="Remove from Favorites" HorizontalAlignment="Right" Margin="0" VerticalAlignment="Bottom" Width="135" Grid.Row="5" Grid.Column="4"/>
+            <Button x:Name="BtnUnfavorite" Content="Remove from Favorites" HorizontalAlignment="Right" Margin="0" VerticalAlignment="Bottom" Width="135" Grid.Row="5" Grid.Column="3" Click="BtnUnfavorite_Click"/>
+            <Button x:Name="BtnViewFavorite" Content="View Favorite" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="85" Grid.Row="5" Grid.Column="3"/>
         </Grid>
     </DockPanel>
 </Window>

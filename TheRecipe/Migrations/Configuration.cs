@@ -125,7 +125,8 @@ namespace TheRecipe.Migrations
       );
 
       context.Recipes.AddOrUpdate(r => r.Id,
-        new Recipe { Id = 1, Title = "Lasagna", Cost = 35, Time = 270, Servings = 10, CategoryId = 7 }
+        new Recipe { Id = 1, Title = "Lasagna", Cost = 35, Time = 270, Servings = 10, CategoryId = 7 },
+        new Recipe { Id = 2, Title = "Adobo", Cost = 10, Time = 30, Servings = 4, CategoryId = 9 }
       );
 
       context.Steps.AddOrUpdate(s => s.Id,
@@ -149,7 +150,9 @@ namespace TheRecipe.Migrations
         new Step { Id = 18, Order = 17, Content = "Top with lasagna sheets (Note 7). Spread with another 2 1/2 cups of Ragu, then 1 cup of Cheese Sauce. Top with lasagna sheets then repeat 1 more time.", RecipeID = 1 },
         new Step { Id = 19, Order = 18, Content = "Top with a 4th layer of lasagna sheets, then pour over the remaining Cheese Sauce.", RecipeID = 1 },
         new Step { Id = 20, Order = 19, Content = "Sprinkle with Mozzarella, then bake for 25 minutes or until golden and bubbling.", RecipeID = 1 },
-        new Step { Id = 21, Order = 20, Content = "Stand for 5 to 10 minutes before cutting and serving, garnished with basil or parsley if desired.", RecipeID = 1 }
+        new Step { Id = 21, Order = 20, Content = "Stand for 5 to 10 minutes before cutting and serving, garnished with basil or parsley if desired.", RecipeID = 1 },
+        new Step { Id = 22, Order = 0, Content = "Put all ingredients in bowl", RecipeID = 2 },
+        new Step { Id = 23, Order = 1, Content = "Cook the fn rest of it", RecipeID = 2 }
       );
 
       context.RecipeIngredients.AddOrUpdate(r => r.Id,
@@ -171,7 +174,9 @@ namespace TheRecipe.Migrations
         new RecipeIngredient { Id = 16, RecipeID = 1, IngredientID = 15, Quantity = "to taste" },
         new RecipeIngredient { Id = 17, RecipeID = 1, IngredientID = 16, Quantity = "to taste" },
         new RecipeIngredient { Id = 18, RecipeID = 1, IngredientID = 54, Quantity = "350g (12oz)" },
-        new RecipeIngredient { Id = 19, RecipeID = 1, IngredientID = 73, Quantity = "1 1/2 cups (150g) shredded" }
+        new RecipeIngredient { Id = 19, RecipeID = 1, IngredientID = 73, Quantity = "1 1/2 cups (150g) shredded" },
+        new RecipeIngredient { Id = 20, RecipeID = 2, IngredientID = 88, Quantity = "whole" },
+        new RecipeIngredient { Id = 21, RecipeID = 2, IngredientID = 11, Quantity = "the whole bottle" }
       );
 
       //  This method will be called after migrating to the latest version.

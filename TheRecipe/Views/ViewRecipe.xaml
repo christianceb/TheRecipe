@@ -25,7 +25,6 @@
             <ColumnDefinition Width="10"/>
         </Grid.ColumnDefinitions>
         <Label Content="{Binding Title}" HorizontalAlignment="Left" Margin="0,0,10,0" VerticalAlignment="Center" FontSize="20" Grid.ColumnSpan="3" Grid.Column="1" Grid.Row="1"/>
-        <Button x:Name="BtnFavoriteToggle" Content="Remove from Favorites" HorizontalAlignment="Right" Margin="0,9" VerticalAlignment="Center" Width="140" Grid.Column="4" Grid.Row="1"/>
 
         <Label Content="Ingredients" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Grid.Row="3"/>
         <ListView x:Name="LvIngredients" ItemsSource="{Binding RecipeIngredients}" Margin="0,30,0,0" Grid.Column="1" Grid.Row="3">

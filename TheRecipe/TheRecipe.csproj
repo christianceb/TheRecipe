@@ -66,6 +66,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Abstracts\Collection.cs" />
+    <Compile Include="Class\FavoritesLocalStorage.cs" />
     <Compile Include="Collections\Categories.cs" />
     <Compile Include="Collections\Ingredients.cs" />
     <Compile Include="Collections\RecipeIngredients.cs" />
@@ -154,5 +155,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

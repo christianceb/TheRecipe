@@ -1,7 +1,11 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Forms;
+using TheRecipe.Class;
+using MessageBox = System.Windows.MessageBox;
 
 namespace TheRecipe
 {
@@ -11,6 +15,7 @@ namespace TheRecipe
   public partial class ViewRecipes : Window
   {
     public RecipesModel Db = new RecipesModel();
+    public FavoritesLocalStorage FavoritesLocalStorage;
     GridViewColumnHeader LvRecipesSortColumn;
     bool LvRecipesSortColumnAsc;
     Recipes Recipes;
@@ -36,6 +41,8 @@ namespace TheRecipe
       BtnEdit.IsEnabled = false;
       BtnView.IsEnabled = false;
       BtnFavorite.IsEnabled = false;
+      BtnUnfavorite.IsEnabled = false;
+      BtnViewFavorite.IsEnabled = false;
     }
 
     private void BtnNewRecipe_Click(object sender, RoutedEventArgs e)
@@ -81,7 +88,15 @@ namespace TheRecipe
         BtnEdit.IsEnabled = true;
         BtnDelete.IsEnabled = true;
         BtnView.IsEnabled = true;
-        BtnFavorite.IsEnabled = true;
+        
+        if (!FavoritesLocalStorage.IsFavorite(Recipes.Current))
+        {
+          BtnFavorite.IsEnabled = true;
+        }
+        else
+        {
+          BtnFavorite.IsEnabled = false;
+        }
       }
     }
 
@@ -160,6 +175,116 @@ namespace TheRecipe
             );
           }
         }
+      }
+    }
+
+    private void RunOfflineDataRoutine()
+    {
+      FavoritesLocalStorage = new FavoritesLocalStorage();
+      
+      if (
+        FavoritesLocalStorage.MaybeLoad()
+        && FavoritesLocalStorage.DeserialiseAndLoad(Recipes)
+      )
+      {
+        FavoriteLoad.Text = FavoritesLocalStorage.FileURI;
+        FavoriteStatus.Text = "Loaded at:";
+      }
+      else
+      {
+        FavoriteLoad.Text = FavoritesLocalStorage.FileURI;
+        FavoriteStatus.Text = "Error loading:";
+      }
+
+      RefreshFavorites();
+
+      // TODO: set status bar values
+    }
+
+    private void LbFavorites_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+      if (LbFavorites.SelectedItem is Recipe)
+      {
+        FavoritesLocalStorage.Current = (Recipe)LbFavorites.SelectedItem;
+        BtnUnfavorite.IsEnabled = true;
+        BtnViewFavorite.IsEnabled = true;
+      }
+    }
+
+    public void RefreshFavorites()
+    {
+      LbFavorites.ItemsSource = FavoritesLocalStorage.Favorites;
+      CollectionViewSource.GetDefaultView(LbFavorites.ItemsSource).Refresh();
+    }
+
+    private void BtnFavorite_Click(object sender, RoutedEventArgs e)
+    {
+      FavoritesLocalStorage.Favorites.Add(Recipes.Current);
+      BtnFavorite.IsEnabled = false;
+      RefreshFavorites();
+    }
+
+    private void MitSave_Click(object sender, RoutedEventArgs e)
+    {
+      SaveFileDialog saveFileDialog = new SaveFileDialog();
+      saveFileDialog.Filter = FavoritesLocalStorage.FileDialogFilter;
+      saveFileDialog.FileName = FavoritesLocalStorage.DefaultFilename;
+      saveFileDialog.Title = "Save favorite recipes as";
+      saveFileDialog.ShowDialog();
+
+      if (!string.IsNullOrWhiteSpace(saveFileDialog.FileName))
+      {
+        FavoritesLocalStorage.Close();
+        FavoritesLocalStorage.MaybeCreateFile(saveFileDialog.FileName);
+        FavoritesLocalStorage.Serialise();
+        RefreshFavorites();
+
+        FavoriteLoad.Text = FavoritesLocalStorage.FileURI;
+        FavoriteStatus.Text = "Saved at:";
+      }
+    }
+
+    private void MitLoad_Click(object sender, RoutedEventArgs e)
+    {
+      OpenFileDialog openFileDialog = new OpenFileDialog();
+      openFileDialog.Filter = FavoritesLocalStorage.FileDialogFilter;
+      openFileDialog.Title = "Load favorite recipes file";
+      openFileDialog.ShowDialog();
+
+      if (!string.IsNullOrWhiteSpace(openFileDialog.FileName))
+      {
+        FavoritesLocalStorage.Close();
+        FavoritesLocalStorage.MaybeLoad(openFileDialog.FileName);
+        FavoritesLocalStorage.DeserialiseAndLoad(Recipes);
+        RefreshFavorites();
+
+        FavoriteLoad.Text = FavoritesLocalStorage.FileURI;
+        FavoriteStatus.Text = "Loaded at:";
+      }
+
+      // It's 04:45 AM, hours before deadline and I haven't done much testing yet
+    }
+
+    private void Window_Closing(object sender, CancelEventArgs e)
+    {
+      FavoritesLocalStorage.Serialise();
+      FavoritesLocalStorage.Close();
+    }
+
+    private void Window_Loaded(object sender, RoutedEventArgs e)
+    {
+      // Run offline data routine as WPF is not exposing window props on constructor
+      RunOfflineDataRoutine();
+    }
+
+    private void BtnUnfavorite_Click(object sender, RoutedEventArgs e)
+    {
+      if (FavoritesLocalStorage.RemoveFromFavorites(FavoritesLocalStorage.Current))
+      {
+        LbFavorites.UnselectAll();
+        BtnUnfavorite.IsEnabled = false;
+        BtnViewFavorite.IsEnabled = false;
+        RefreshFavorites();
       }
     }
   }

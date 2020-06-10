@@ -101,6 +101,11 @@ namespace TheRecipe
       throw new NotImplementedException();
     }
 
+    public List<Recipe> Read(List<int> ids)
+    {
+      return Db.Recipes.Where(r => ids.Contains(r.Id)).ToList();
+    }
+
     public override List<string> Validate(Recipe Recipe)
     {
       List<string> errors = new List<string>();
