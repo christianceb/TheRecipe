@@ -101,6 +101,12 @@ namespace TheRecipe
         errors.Add("Invalid cost entered");
       }
 
+      // Enforce greater than 0 constraint to time
+      if (Recipe.Time < 0)
+      {
+        errors.Add("Invalid time entered");
+      }
+
       return errors;
     }
 

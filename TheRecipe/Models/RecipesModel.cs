@@ -36,10 +36,6 @@ namespace TheRecipe
           .IsUnicode(false);
 
       modelBuilder.Entity<Recipe>()
-          .Property(e => e.Time)
-          .IsUnicode(false);
-
-      modelBuilder.Entity<Recipe>()
           .Property(e => e.Cost)
           .HasPrecision(18, 0);
 

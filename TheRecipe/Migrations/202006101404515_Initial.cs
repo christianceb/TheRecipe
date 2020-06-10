@@ -22,7 +22,7 @@ namespace TheRecipe.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Title = c.String(nullable: false, maxLength: 50, unicode: false),
-                        Time = c.String(maxLength: 50, unicode: false),
+                        Time = c.Int(),
                         Cost = c.Decimal(precision: 18, scale: 0),
                         Servings = c.Byte(),
                         CategoryId = c.Int(),

@@ -50,7 +50,7 @@
                 <Label Content="Cost" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Center"/>
                 <Label Content="{Binding Cost, StringFormat='${0}'}" HorizontalAlignment="Left" Margin="40,0,0,0" VerticalAlignment="Center"/>
                 <Label Content="Cook Time" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Center" Grid.Column="1"/>
-                <Label Content="{Binding Time}" HorizontalAlignment="Left" Margin="70,0,0,0" VerticalAlignment="Center" Grid.Column="1"/>
+                <Label Content="{Binding Time}" ContentStringFormat="{}{0} minutes" HorizontalAlignment="Left" Margin="70,0,0,0" VerticalAlignment="Center" Grid.Column="1"/>
                 <Label Content="Servings" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Center" Grid.Column="2"/>
                 <Label Content="{Binding Servings}" HorizontalAlignment="Left" Margin="60,0,0,0" VerticalAlignment="Center" Grid.Column="2"/>
             </Grid>

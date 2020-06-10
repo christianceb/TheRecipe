@@ -21,8 +21,7 @@ namespace TheRecipe
         [StringLength(50)]
         public string Title { get; set; }
 
-        [StringLength(50)]
-        public string Time { get; set; }
+        public int? Time { get; set; }
 
         public decimal? Cost { get; set; }
 

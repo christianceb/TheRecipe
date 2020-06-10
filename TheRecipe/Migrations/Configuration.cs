@@ -125,7 +125,7 @@ namespace TheRecipe.Migrations
       );
 
       context.Recipes.AddOrUpdate(r => r.Id,
-        new Recipe { Id = 1, Title = "Lasagna", Cost = 35, Time = "4 hours, 30 minutes", Servings = 10, CategoryId = 7 }
+        new Recipe { Id = 1, Title = "Lasagna", Cost = 35, Time = 270, Servings = 10, CategoryId = 7 }
       );
 
       context.Steps.AddOrUpdate(s => s.Id,

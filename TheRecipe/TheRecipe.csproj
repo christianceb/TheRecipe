@@ -72,9 +72,9 @@
     <Compile Include="Collections\Recipes.cs" />
     <Compile Include="Collections\Steps.cs" />
     <Compile Include="Interfaces\ICollection.cs" />
-    <Compile Include="Migrations\202006071206228_Initial.cs" />
-    <Compile Include="Migrations\202006071206228_Initial.Designer.cs">
-      <DependentUpon>202006071206228_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\202006101404515_Initial.cs" />
+    <Compile Include="Migrations\202006101404515_Initial.Designer.cs">
+      <DependentUpon>202006101404515_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Category.cs" />
@@ -131,8 +131,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\202006071206228_Initial.resx">
-      <DependentUpon>202006071206228_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202006101404515_Initial.resx">
+      <DependentUpon>202006101404515_Initial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
