@@ -18,20 +18,21 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10"/>
-            <ColumnDefinition Width="233*"/>
+            <ColumnDefinition Width="8*"/>
             <ColumnDefinition Width="10"/>
-            <ColumnDefinition Width="377*"/>
-            <ColumnDefinition Width="163*"/>
+            <ColumnDefinition Width="7*"/>
+            <ColumnDefinition Width="5*"/>
             <ColumnDefinition Width="10"/>
         </Grid.ColumnDefinitions>
-        <Label Content="Lasagna" HorizontalAlignment="Left" Margin="0,0,10,0" VerticalAlignment="Center" FontSize="20" Grid.ColumnSpan="3" Grid.Column="1" Grid.Row="1"/>
-        <Button Content="Remove from Favorites" HorizontalAlignment="Right" Margin="0,9" VerticalAlignment="Center" Width="140" Grid.Column="4" Grid.Row="1"/>
+        <Label Content="{Binding Title}" HorizontalAlignment="Left" Margin="0,0,10,0" VerticalAlignment="Center" FontSize="20" Grid.ColumnSpan="3" Grid.Column="1" Grid.Row="1"/>
+        <Button x:Name="BtnFavoriteToggle" Content="Remove from Favorites" HorizontalAlignment="Right" Margin="0,9" VerticalAlignment="Center" Width="140" Grid.Column="4" Grid.Row="1"/>
 
         <Label Content="Ingredients" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Grid.Row="3"/>
-        <ListView Margin="0,30,0,0" Grid.Column="1" Grid.Row="3">
+        <ListView x:Name="LvIngredients" ItemsSource="{Binding RecipeIngredients}" Margin="0,30,0,0" Grid.Column="1" Grid.Row="3">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn/>
+                    <GridViewColumn Header="Ingredient" Width="140" DisplayMemberBinding="{Binding Ingredient.Name}" />
+                    <GridViewColumn Header="Quantity" Width="150" DisplayMemberBinding="{Binding Quantity}" />
                 </GridView>
             </ListView.View>
         </ListView>
@@ -40,27 +41,31 @@
                 <RowDefinition/>
                 <RowDefinition Height="9*"/>
             </Grid.RowDefinitions>
-            <ListBox Grid.Row="1">
-                <ListBoxItem Content="Start step"/>
-                <ListBoxItem Content="Other steps go here"/>
-                <ListBoxItem Content="End step"/>
-            </ListBox>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
-                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
                 <Label Content="Cost" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Center"/>
-                <Label Content="$15" HorizontalAlignment="Left" Margin="40,0,0,0" VerticalAlignment="Center"/>
+                <Label Content="{Binding Cost, StringFormat='${0}'}" HorizontalAlignment="Left" Margin="40,0,0,0" VerticalAlignment="Center"/>
                 <Label Content="Cook Time" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Center" Grid.Column="1"/>
-                <Label Content="30 minutes" HorizontalAlignment="Left" Margin="70,0,0,0" VerticalAlignment="Center" Grid.Column="1"/>
+                <Label Content="{Binding Time}" HorizontalAlignment="Left" Margin="70,0,0,0" VerticalAlignment="Center" Grid.Column="1"/>
                 <Label Content="Servings" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Center" Grid.Column="2"/>
-                <Label Content="4" HorizontalAlignment="Left" Margin="60,0,0,0" VerticalAlignment="Center" Grid.Column="2"/>
+                <Label Content="{Binding Servings}" HorizontalAlignment="Left" Margin="60,0,0,0" VerticalAlignment="Center" Grid.Column="2"/>
             </Grid>
+            <ListBox x:Name="LbSteps" ItemsSource="{Binding Steps}" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <TextBlock Text="{Binding Path=Content}" TextWrapping="Wrap" />
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
         </Grid>
-        <Button Content="Edit" HorizontalAlignment="Right" Margin="0" VerticalAlignment="Bottom" Width="75" Grid.Column="4" Grid.Row="5" Click="Button_Click"/>
-        <Button Content="Delete" HorizontalAlignment="Right" Margin="0,0,80,0" VerticalAlignment="Bottom" Width="75" Grid.Column="4" Grid.Row="5"/>
-        <Button x:Name="btnBack" Content="Back" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Bottom" Width="75" Grid.Column="1" Grid.Row="5" Click="btnBack_Click"/>
+        <Button x:Name="BtnEdit" Content="Edit" HorizontalAlignment="Right" Margin="0,22,0,0" VerticalAlignment="Top" Width="75" Grid.Column="4" Grid.Row="5" Click="BtnEdit_Click"/>
+        <Button x:Name="BtnDelete" Content="Delete" HorizontalAlignment="Right" Margin="0,0,80,0" VerticalAlignment="Bottom" Width="75" Grid.Column="4" Grid.Row="5" Click="BtnDelete_Click"/>
+        <Button x:Name="BtnBack" Content="Back" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Bottom" Width="75" Grid.Column="1" Grid.Row="5" Click="BtnBack_Click"/>
     </Grid>
 </Window>

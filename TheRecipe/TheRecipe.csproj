@@ -46,6 +46,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -65,7 +66,11 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Abstracts\Collection.cs" />
+    <Compile Include="Collections\Categories.cs" />
     <Compile Include="Collections\Ingredients.cs" />
+    <Compile Include="Collections\RecipeIngredients.cs" />
+    <Compile Include="Collections\Recipes.cs" />
+    <Compile Include="Collections\Steps.cs" />
     <Compile Include="Interfaces\ICollection.cs" />
     <Compile Include="Migrations\202006071206228_Initial.cs" />
     <Compile Include="Migrations\202006071206228_Initial.Designer.cs">
@@ -74,9 +79,6 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\RecipesModel.cs" />
-    <Compile Include="Views\EditRecipe.xaml.cs">
-      <DependentUpon>EditRecipe.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\FormRecipe.xaml.cs">
       <DependentUpon>FormRecipe.xaml</DependentUpon>
     </Compile>
@@ -90,10 +92,6 @@
     <Compile Include="Views\ViewRecipe.xaml.cs">
       <DependentUpon>ViewRecipe.xaml</DependentUpon>
     </Compile>
-    <Page Include="Views\EditRecipe.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\FormRecipe.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

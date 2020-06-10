@@ -34,7 +34,7 @@ namespace TheRecipe
 
     public void Refresh()
     {
-      LbIngredients.DataContext = null;
+      //LbIngredients.DataContext = null;
       LbIngredients.DataContext = ingredients.Browse();
     }
 
@@ -100,6 +100,13 @@ namespace TheRecipe
       {
         Clear();
         Refresh();
+
+        MessageBox.Show(
+          "Ingredient added!",
+          "Success",
+          MessageBoxButton.OK,
+          MessageBoxImage.Information
+        );
       }
       else
       {

@@ -11,6 +11,8 @@ namespace TheRecipe
 {
   public class Ingredients : Collection<Ingredient>
   {
+    public Ingredient Ingredient;
+
     public Ingredients(RecipesModel recipesModel)
     {
       Db = recipesModel;
@@ -20,25 +22,28 @@ namespace TheRecipe
 
     public override bool Add(Ingredient ingredient)
     {
+      bool success = false;
+
       try
       {
         Db.Ingredients.Add(ingredient);
         Db.SaveChanges();
         RefreshList();
-      } catch (Exception exception)
+      }
+      catch (Exception exception)
       {
-        // TODO: gracefully handle exception maybe?
-        Console.WriteLine(exception);
+        // Should you need to return it somewhere
+        _ = exception.Message;
       }
 
-      return true;
+      return success;
     }
 
-    public List<string> Validate(Ingredient ingredient)
+    public override List<string> Validate(Ingredient ingredient = null)
     {
       List<string> errors = new List<string>();
 
-      if ( String.IsNullOrEmpty(ingredient.Name) )
+      if (string.IsNullOrEmpty(ingredient.Name))
       {
         errors.Add("Name is blank");
       }
@@ -78,7 +83,6 @@ namespace TheRecipe
         return false;
       }
 
-      ingredient = item;
       Db.SaveChanges();
 
       return true;

@@ -14,5 +14,7 @@ namespace TheRecipe
     bool Edit(T item);
     bool Delete(T item);
     bool Delete(int id);
+    bool Save();
+    List<string> Validate(T item);
   }
 }

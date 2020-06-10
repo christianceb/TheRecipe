@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TheRecipe"
         mc:Ignorable="d"
-        Title="FormRecipe" Height="450" Width="800">
+        Title="FormRecipe" Height="450" Width="800" Loaded="Window_Loaded" Closing="Window_Closing">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="10"/>
@@ -21,24 +21,22 @@
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="1" Grid.Row="1">
             <Grid.RowDefinitions>
-                <RowDefinition/>
+                <RowDefinition Height="1*"/>
                 <RowDefinition Height="10"/>
                 <RowDefinition Height="6*"/>
                 <RowDefinition Height="10"/>
-                <RowDefinition Height="3*"/>
-                <RowDefinition Height="10"/>
+                <RowDefinition Height="6*"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
-            <Button x:Name="btnBack" Content="Back" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="6" Width="75" Click="btnBack_Click"/>
+            <Button x:Name="BtnBack" Content="Back" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="5" Width="75" Click="BtnBack_Click"/>
 
-            <TextBox TextWrapping="Wrap" Text="Lasagna" VerticalAlignment="Top" FontSize="20" VerticalContentAlignment="Center" />
+            <TextBox x:Name="TbTitle" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" VerticalContentAlignment="Center" Text="{Binding Title, Mode=TwoWay}" TextChanged="TbTitle_TextChanged" />
 
             <GroupBox Header="Add Ingredients" Grid.Row="2">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="12*"/>
-                        <RowDefinition Height="10"/>
                         <RowDefinition Height="3*"/>
+                        <RowDefinition Height="12*"/>
                         <RowDefinition Height="3*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
@@ -46,28 +44,28 @@
                         <ColumnDefinition Width="10"/>
                         <ColumnDefinition Width="3*"/>
                     </Grid.ColumnDefinitions>
-                    <GroupBox Header="Lookup" Grid.ColumnSpan="3">
+
+                    <TextBox x:Name="TbQuantity" VerticalAlignment="Center" Grid.Row="2" VerticalContentAlignment="Center" />
+                    <Button x:Name="BtnAddRecipeIngredient" Content="Add to Recipe" Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" Click="BtnAddRecipeIngredient_Click" />
+
+                    <GroupBox Header="Lookup" Grid.Row="1" Grid.ColumnSpan="3">
                         <Grid>
-                            <ListBox>
-                                <ListBoxItem Content="Onions"/>
-                                <ListBoxItem Content="Tomato"/>
-                                <ListBoxItem Content="Banana"/>
-                            </ListBox>
+                            <ListBox ItemsSource="{Binding}" x:Name="LbIngredients" DisplayMemberPath="Name" SelectionChanged="LbIngredients_SelectionChanged"/>
                         </Grid>
                     </GroupBox>
-                    <TextBox VerticalAlignment="Center" Text="(qty)" Grid.Row="2" VerticalContentAlignment="Center"/>
-                    <Button Content="Add to Recipe" Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" />
-                    <TextBox Text="(Ingredient)" Grid.Row="3" VerticalAlignment="Bottom" VerticalContentAlignment="Center"/>
-                    <Button Content="Add to Lookup" Grid.Column="2" Grid.Row="3" VerticalAlignment="Bottom" />
+
+                    <TextBox x:Name="TbIngredient" Text="" VerticalAlignment="Center" VerticalContentAlignment="Center" TextChanged="TbIngredient_TextChanged"/>
+                    <Button x:Name="BtnAddToLookup" Content="Add to Lookup" Grid.Column="2" VerticalAlignment="Center" Click="BtnAddToLookup_Click" />
                 </Grid>
             </GroupBox>
-            <Button Content="Remove Ingredient" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="6" Width="120"/>
+            <Button x:Name="BtnRemoveRecipeIngredient" Content="Remove Ingredient" HorizontalAlignment="Right" Grid.Row="5" Width="120" Click="BtnRemoveRecipeIngredient_Click" Margin="0" VerticalAlignment="Bottom"/>
             <GroupBox Header="Recipe Ingredients" Grid.Row="4">
                 <Grid>
-                    <ListView>
+                    <ListView x:Name="LvRecipeIngredients" ItemsSource="{Binding RecipeIngredients}" SelectionChanged="LvRecipeIngredients_SelectionChanged">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn/>
+                                <GridViewColumn Header="Ingredient" Width="140" DisplayMemberBinding="{Binding Ingredient.Name}" />
+                                <GridViewColumn Header="Quantity" Width="150" DisplayMemberBinding="{Binding Quantity}" />
                             </GridView>
                         </ListView.View>
                     </ListView>
@@ -84,28 +82,40 @@
                 <RowDefinition Height="10"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
-            <Button Content="Save" HorizontalAlignment="Right" Margin="0" VerticalAlignment="Bottom" Width="75" Grid.Row="6"/>
-            <ListBox Grid.Row="4">
-                <ListBoxItem Content="Start step"/>
-                <ListBoxItem Content="Other steps go here"/>
-                <ListBoxItem Content="End step"/>
-            </ListBox>
-            <TextBox TextWrapping="Wrap" Text="(new step goes here)" Grid.Row="2" Margin="0,0,0,25"/>
 
-            <Button Content="Save" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="2" Width="75"/>
-            <Button Content="Delete" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="2" Width="75" Margin="10,0,80,0"/>
-
-            <Label Content="Cook Time" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Center" Grid.Row="1"/>
-            <TextBox HorizontalAlignment="Left" Height="23" Margin="70,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="80" Text="15 mins" Grid.Row="1" VerticalContentAlignment="Center"/>
-
-            <Label Content="Cost" HorizontalAlignment="Center" Margin="0,0,20,0" VerticalAlignment="Center" Grid.Row="1"/>
-            <TextBox HorizontalAlignment="Center" Height="23" Margin="60,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="41" Text="13.19" Grid.Row="1" VerticalContentAlignment="Center"/>
-
-            <Label Content="Servings" HorizontalAlignment="Right" Margin="0,0,20,0" VerticalAlignment="Center" Grid.Row="1"/>
-            <TextBox HorizontalAlignment="Right" Height="23" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" Width="16" Text="4" Grid.Row="1" VerticalContentAlignment="Center"/>
+            <ListBox x:Name="LbSteps" Grid.Row="4" SelectionChanged="LbSteps_SelectionChanged" ItemsSource="{Binding}" DisplayMemberPath="Content" />
+            <TextBox x:Name="TbStep" Text="{Binding Content}" TextWrapping="Wrap" Grid.Row="2" Margin="0,0,0,25" TextChanged="TbStep_TextChanged"/>
 
             <Label Content="Category" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,130,0"/>
-            <ComboBox HorizontalAlignment="Right" Margin="188,2,0,0" VerticalAlignment="Center" Width="120"/>
+            <ComboBox x:Name="CbCategory" HorizontalAlignment="Right" Margin="188,2,0,0" VerticalAlignment="Center" Width="120" DisplayMemberPath="Name" SelectedValue="{Binding Category}" SelectionChanged="CbCategory_SelectionChanged" />
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Content="Cost" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <TextBox x:Name="TbCost" HorizontalAlignment="Right" Height="23" TextWrapping="Wrap" VerticalAlignment="Center" Width="70" Text="{Binding Cost, Mode=TwoWay, StringFormat='${0}'}" VerticalContentAlignment="Center" TextChanged="TbCost_TextChanged"/>
+
+                <Label Content="Cook Time" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1"/>
+                <TextBox HorizontalAlignment="Right" Height="23" Margin="60,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="150" Text="{Binding Time, Mode=TwoWay}" Grid.Column="1" VerticalContentAlignment="Center"/>
+
+                <Label Content="Servings" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="2"/>
+                <TextBox x:Name="TbServings" HorizontalAlignment="Right" Height="23" TextWrapping="Wrap" VerticalAlignment="Center" Width="50" Text="{Binding Servings, Mode=TwoWay}" Grid.Column="2" VerticalContentAlignment="Center" TextChanged="TbServings_TextChanged"/>
+            </Grid>
+
+            <Button x:Name="BtnSaveStep" Content="Save" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="2" Width="75" Click="BtnSaveStep_Click"/>
+            <Button x:Name="BtnDeleteStep" Content="Delete" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="2" Width="75" Margin="10,0,80,0" Click="BtnDeleteStep_Click"/>
+            <Button x:Name="BtnNewStep" Content="New Step" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="2" Width="75" Click="BtnNewStep_Click"/>
+            <Button x:Name="BtnCancelStep" Content="Cancel" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="2" Width="75" Click="BtnCancelStep_Click" Margin="80,0,0,0"/>
+
+            <Button x:Name="BtnUp" Content="&#xE110;" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="6" Width="30" FontFamily="Segoe UI Symbol" Margin="133,0,0,0" Click="BtnUp_Click" />
+            <Button x:Name="BtnDown" Content="&#xE1FD;" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="6" Width="30" FontFamily="Segoe UI Symbol" Margin="166,0,0,0" Click="BtnDown_Click" />
+            <Label Content="Re-order selected step" HorizontalAlignment="Left" Grid.Row="6" VerticalAlignment="Bottom" Margin="0,0,0,-3"/>
+
+            <Button x:Name="BtnSaveRecipe" Content="Save Recipe" HorizontalAlignment="Right" Margin="0" VerticalAlignment="Bottom" Width="75" Grid.Row="6" Click="BtnSaveRecipe_Click"/>
         </Grid>
     </Grid>
 </Window>
