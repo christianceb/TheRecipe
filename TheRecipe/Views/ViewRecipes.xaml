@@ -59,8 +59,21 @@
             <ListView x:Name="LvRecipes" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" SelectionChanged="LvRecipes_SelectionChanged">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Category" Width="100" DisplayMemberBinding="{Binding Category.Name}" />
-                        <GridViewColumn Header="Name" Width="300" DisplayMemberBinding="{Binding Title}" />
+                        <GridViewColumn Width="25" DisplayMemberBinding="{Binding Id}">
+                            <GridViewColumn.Header>
+                                <GridViewColumnHeader Tag="Id" Click="GridViewColumnHeader_Click">Id</GridViewColumnHeader>
+                            </GridViewColumn.Header>
+                        </GridViewColumn>
+                        <GridViewColumn Width="100" DisplayMemberBinding="{Binding Category.Name}">
+                            <GridViewColumn.Header>
+                                <GridViewColumnHeader Tag="Category.Name" Click="GridViewColumnHeader_Click">Category</GridViewColumnHeader>
+                            </GridViewColumn.Header>
+                        </GridViewColumn>
+                        <GridViewColumn Width="300" DisplayMemberBinding="{Binding Title}">
+                            <GridViewColumn.Header>
+                                <GridViewColumnHeader Tag="Title" Click="GridViewColumnHeader_Click">Title</GridViewColumnHeader>
+                            </GridViewColumn.Header>
+                        </GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>

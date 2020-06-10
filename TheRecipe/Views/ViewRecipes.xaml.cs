@@ -1,17 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace TheRecipe
 {
@@ -21,6 +11,8 @@ namespace TheRecipe
   public partial class ViewRecipes : Window
   {
     public RecipesModel Db = new RecipesModel();
+    GridViewColumnHeader LvRecipesSortColumn;
+    bool LvRecipesSortColumnAsc;
     Recipes Recipes;
 
     public ViewRecipes()
@@ -91,6 +83,34 @@ namespace TheRecipe
         BtnView.IsEnabled = true;
         BtnFavorite.IsEnabled = true;
       }
+    }
+
+    private void GridViewColumnHeader_Click(object sender, RoutedEventArgs e)
+    {
+      GridViewColumnHeader column = (sender as GridViewColumnHeader);
+      string sortBy = column.Tag.ToString();
+      ListSortDirection newDir = ListSortDirection.Ascending;
+
+      // Clear existing sorts queued
+      if (LvRecipesSortColumn != null)
+      {
+        LvRecipes.Items.SortDescriptions.Clear();
+      }
+
+
+      if (LvRecipesSortColumn == column && LvRecipesSortColumnAsc)
+      {
+        newDir = ListSortDirection.Descending;
+        LvRecipesSortColumnAsc = false;
+      }
+      else
+      {
+        // Always default to ascending
+        LvRecipesSortColumnAsc = true;
+      }
+
+      LvRecipesSortColumn = column;
+      LvRecipes.Items.SortDescriptions.Add(new SortDescription(sortBy, newDir));
     }
   }
 }
