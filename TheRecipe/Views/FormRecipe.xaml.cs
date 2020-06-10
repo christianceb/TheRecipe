@@ -636,11 +636,30 @@ namespace TheRecipe
           // Discard changes and propagate to Owner windows
           Recipes.Discard();
 
+          /**
+           * There are only 2 known paths to this window:
+           * 1. Via ViewRecipe
+           * 2. Via ViewRecipes
+           * 
+           * #1 has code to iteratively find the topmost window and run refresh, but #2
+           * still needs code to be traversed via iteration.
+           * 
+           * Since there are only 2 known paths, we will target the other path (ViewRecipe)
+           * explicitly and not waste time writing an iterator to refresh every single
+           * Owner.
+           */
+
           // Find viewRecipes and reset data contexts and item sources based on discard
           ViewRecipes viewRecipes = FindViewRecipes();
           if (viewRecipes != null)
           {
             viewRecipes.Refresh();
+          }
+
+          // Explicitly refer to ViewRecipe if Owner is such and refresh it
+          if (Owner is ViewRecipe)
+          {
+            ((ViewRecipe)Owner).Refresh();
           }
         }
         else // User does not want to lose changes

@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 
 namespace TheRecipe
 {
@@ -12,7 +13,7 @@ namespace TheRecipe
     public ViewRecipe(Recipes recipes)
     {
       Recipes = recipes;
-      DataContext = recipes.Current;
+      DataContext = Recipes.Current;
 
       InitializeComponent();
     }
@@ -38,6 +39,7 @@ namespace TheRecipe
         if (success)
         {
           // TODO: if you can omit passing a recipe in Delete, the better so you can omit the line below too
+          // TODO: i don't remember what the TODO above is anymore but whatevs.
           Recipes.Current = null;
           MessageBox.Show(
             "Recipe deleted",
@@ -47,6 +49,7 @@ namespace TheRecipe
           );
 
           ((ViewRecipes)Owner).Refresh();
+          ((ViewRecipes)Owner).Clear();
 
           Close();
         }
@@ -69,6 +72,11 @@ namespace TheRecipe
         Owner = this
       };
       formRecipe.ShowDialog();
+    }
+
+    internal void Refresh()
+    {
+      DataContext = Recipes.Current;
     }
   }
 }

@@ -83,6 +83,9 @@
       <DependentUpon>FormRecipe.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\Ingredient.cs" />
+    <Compile Include="Views\Search.xaml.cs">
+      <DependentUpon>Search.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ViewIngredients.xaml.cs">
       <DependentUpon>ViewIngredients.xaml</DependentUpon>
     </Compile>
@@ -93,6 +96,10 @@
       <DependentUpon>ViewRecipe.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\FormRecipe.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Search.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

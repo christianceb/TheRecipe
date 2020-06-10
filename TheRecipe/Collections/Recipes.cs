@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TheRecipe.Collections;
 
 namespace TheRecipe
 {
@@ -58,13 +59,31 @@ namespace TheRecipe
       return List;
     }
 
-    public override bool Delete(Recipe item)
+    public override bool Delete(Recipe recipe)
     {
-      // TODO: false state and convert to txn
-      Db.Recipes.Remove(item);
-      Db.SaveChanges();
+      bool success = false;
 
-      return true;
+      using (DbContextTransaction transaction = Db.Database.BeginTransaction())
+      {
+        try
+        {
+          Db.Recipes.Remove(recipe);
+          Db.SaveChanges();
+          transaction.Commit();
+          
+          RefreshList();
+          success = true;
+        }
+        catch (Exception exception)
+        {
+          transaction.Rollback();
+
+          // Should you need to explain what the exception was
+          _ = exception.Message;
+        }
+      }
+
+      return success;
     }
 
     public override bool Delete(int id)
@@ -130,6 +149,62 @@ namespace TheRecipe
       }
 
       return last;
+    }
+
+    /// <summary>
+    /// Search for recipes having cook times less than specified
+    /// </summary>
+    /// <param name="minutes">An unsigned integer, cooking time in minutes</param>
+    /// <returns>Recipes matching search parameters</returns>
+    public List<Recipe> SearchLessThanTime(int minutes)
+    {
+      List<Recipe> recipes = new List<Recipe>();
+
+      recipes = (
+        from r in Db.Recipes
+        where r.Time <= minutes
+        select r
+      ).ToList();
+
+      return recipes;
+    }
+
+    /// <summary>
+    /// Search by recipe title containing keywords
+    /// </summary>
+    /// <param name="keywords">Keywords to search</param>
+    /// <returns>Recipes matching search parameters</returns>
+    public List<Recipe> SearchByKeyword(string keywords)
+    {
+      List<Recipe> recipes = new List<Recipe>();
+
+      recipes = (
+        from r in Db.Recipes
+        where r.Title.Contains(keywords)
+        select r
+      ).ToList();
+
+      return recipes;
+    }
+
+    /// <summary>
+    /// Search by ingredient names on recipes having them
+    /// </summary>
+    /// <param name="keywords">Keywords to search</param>
+    /// <returns>Recipes matching search parameters</returns>
+    public List<Recipe> SearchRecipesContainingIngredients(string keywords)
+    {
+      List<Recipe> recipes = new List<Recipe>();
+
+      recipes = (
+        from r in Db.Recipes
+        where r.RecipeIngredients.Any(
+          ri => ri.Ingredient.Name.Contains(keywords)
+        )
+        select r
+      ).ToList();
+
+      return recipes;
     }
   }
 }

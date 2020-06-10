@@ -19,14 +19,13 @@ namespace TheRecipe
   /// </summary>
   public partial class ViewIngredients : Window
   {
-    Ingredients ingredients;
-    Ingredient selectedIngredient;
+    Ingredients Ingredients;
 
     public ViewIngredients(RecipesModel db)
     {
       InitializeComponent();
 
-      ingredients = new Ingredients(db);
+      Ingredients = new Ingredients(db);
 
       Clear();
       Refresh();
@@ -35,14 +34,14 @@ namespace TheRecipe
     public void Refresh()
     {
       //LbIngredients.DataContext = null;
-      LbIngredients.DataContext = ingredients.Browse();
+      LbIngredients.DataContext = Ingredients.Browse();
     }
 
     public void Clear()
     {
       TbIngredient.Text = "";
       LbIngredients.UnselectAll();
-      selectedIngredient = null;
+      Ingredients.Current = null;
       BtnSave.Content = "Add";
       BtnDelete.IsEnabled = false;
       BtnClear.IsEnabled = false;
@@ -57,8 +56,8 @@ namespace TheRecipe
     {
       if (LbIngredients.SelectedItem is Ingredient)
       {
-        selectedIngredient = (Ingredient)LbIngredients.SelectedItem;
-        TbIngredient.Text = selectedIngredient.Name;
+        Ingredients.Current = (Ingredient)LbIngredients.SelectedItem;
+        TbIngredient.Text = Ingredients.Current.Name;
         BtnSave.Content = "Save";
 
         BtnClear.IsEnabled = true;
@@ -72,27 +71,27 @@ namespace TheRecipe
       List<string> validateResults;
 
       // Add ingredient
-      if (selectedIngredient == null)
+      if (Ingredients.Current == null)
       {
         Ingredient newIngredient = new Ingredient
         {
           Name = TbIngredient.Text
         };
-        validateResults = ingredients.Validate(newIngredient);
+        validateResults = Ingredients.Validate(newIngredient);
 
         if (validateResults.Count == 0)
         {
-          success = ingredients.Add(newIngredient);
+          success = Ingredients.Add(newIngredient);
         }
       }
       else
       {
-        selectedIngredient.Name = TbIngredient.Text;
-        validateResults = ingredients.Validate(selectedIngredient);
+        Ingredients.Current.Name = TbIngredient.Text;
+        validateResults = Ingredients.Validate(Ingredients.Current);
 
         if (validateResults.Count == 0)
         {
-          success = ingredients.Edit(selectedIngredient);
+          success = Ingredients.Edit(Ingredients.Current);
         }
       }
 
@@ -121,9 +120,9 @@ namespace TheRecipe
 
     private void BtnDelete_Click(object sender, RoutedEventArgs e)
     {
-      if (selectedIngredient != null)
+      if (Ingredients.Current != null)
       {
-        if (ingredients.Delete(selectedIngredient))
+        if (Ingredients.Delete(Ingredients.Current))
         {
           Clear();
           Refresh();
