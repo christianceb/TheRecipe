@@ -134,6 +134,11 @@ namespace TheRecipe
       return errors;
     }
 
+    /// <summary>
+    /// Given a recipe, find the last order number in the steps
+    /// </summary>
+    /// <param name="recipe">Recipe to find a stemp number</param>
+    /// <returns>The order number. If none are found, defaults to 0</returns>
     public int FindLastOrder(Recipe recipe = null)
     {
       Recipe searchRecipe;

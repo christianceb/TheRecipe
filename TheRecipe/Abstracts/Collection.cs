@@ -7,10 +7,21 @@ using System.Threading.Tasks;
 
 namespace TheRecipe
 {
+  /// <summary>
+  /// Abstract class to augment ICollection's interfaces
+  /// </summary>
+  /// <typeparam name="T"></typeparam>
   public abstract class Collection<T> : ICollection<T>
   {
+    /// <summary>
+    /// EF DbContext to be used across the object
+    /// </summary>
     protected RecipesModel Db;
     protected List<T> List;
+    
+    /// <summary>
+    /// The object currently in focus
+    /// </summary>
     public T Current;
 
     public abstract bool Add(T item);

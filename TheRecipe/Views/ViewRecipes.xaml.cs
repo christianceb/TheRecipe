@@ -4,7 +4,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Forms;
-using TheRecipe.Class;
 using MessageBox = System.Windows.MessageBox;
 
 namespace TheRecipe

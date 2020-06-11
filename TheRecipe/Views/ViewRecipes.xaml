@@ -54,7 +54,7 @@
             </Grid.RowDefinitions>
 
             <Label Content="Recipes" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Grid.Row="1" Grid.Column="1" Margin="0" Grid.ColumnSpan="2"/>
-            <Button x:Name="BtnNewRecipe" Content="New Recipe" HorizontalAlignment="Left" Margin="78.359,9,0,9" VerticalAlignment="Center" Grid.Row="1" Grid.Column="2" Width="75" Click="BtnNewRecipe_Click"/>
+            <Button x:Name="BtnNewRecipe" Content="New Recipe" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" Width="75" Click="BtnNewRecipe_Click"/>
             <ListView x:Name="LvRecipes" Grid.Row="3" Grid.Column="1" SelectionChanged="LvRecipes_SelectionChanged">
                 <ListView.View>
                     <GridView>

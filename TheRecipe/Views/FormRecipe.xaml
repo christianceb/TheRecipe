@@ -99,8 +99,8 @@
                 <Label Content="Cost" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                 <TextBox x:Name="TbCost" HorizontalAlignment="Right" Height="23" TextWrapping="Wrap" VerticalAlignment="Center" Width="70" Text="{Binding Cost, Mode=TwoWay, StringFormat='${0}'}" VerticalContentAlignment="Center" TextChanged="TbCost_TextChanged"/>
 
-                <Label Content="Cook Time" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1"/>
-                <TextBox HorizontalAlignment="Right" Height="23" Margin="60,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="150" Text="{Binding Time, Mode=TwoWay, StringFormat={}{0} minutes}" Grid.Column="1" VerticalContentAlignment="Center"/>
+                <Label Content="Cook Time (in minutes)" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1"/>
+                <TextBox HorizontalAlignment="Right" Height="23" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" Width="95" Text="{Binding Time, Mode=TwoWay}" Grid.Column="1" VerticalContentAlignment="Center"/>
 
                 <Label Content="Servings" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="2"/>
                 <TextBox x:Name="TbServings" HorizontalAlignment="Right" Height="23" TextWrapping="Wrap" VerticalAlignment="Center" Width="50" Text="{Binding Servings, Mode=TwoWay}" Grid.Column="2" VerticalContentAlignment="Center" TextChanged="TbServings_TextChanged"/>

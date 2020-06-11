@@ -204,6 +204,11 @@ namespace TheRecipe
       return set;
     }
 
+    /// <summary>
+    /// Reorder this.Current to whatever direction it is set to be.
+    /// </summary>
+    /// <param name="up">If true, this.Current goes up. Down otherwise</param>
+    /// <returns>True if successful, false otherwise especially if step has his either ceiling or floor of steps</returns>
     private bool ReorderSteps(bool up)
     {
       int low = 0;

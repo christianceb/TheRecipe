@@ -191,7 +191,9 @@ namespace TheRecipe
 
     private void BtnClear_Click(object sender, RoutedEventArgs e)
     {
+      Results = new List<Recipe>();
       ClearSearch();
+      RefreshResults();
     }
 
     private void LbResults_SelectionChanged(object sender, SelectionChangedEventArgs e)

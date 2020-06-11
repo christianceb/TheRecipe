@@ -29,6 +29,7 @@ namespace TheRecipe
         Db.Ingredients.Add(ingredient);
         Db.SaveChanges();
         RefreshList();
+        success = true;
       }
       catch (Exception exception)
       {
@@ -39,6 +40,11 @@ namespace TheRecipe
       return success;
     }
 
+    /// <summary>
+    /// Validates a given ingredient and enforce constraints
+    /// </summary>
+    /// <param name="ingredient"></param>
+    /// <returns></returns>
     public override List<string> Validate(Ingredient ingredient = null)
     {
       List<string> errors = new List<string>();
@@ -57,6 +63,9 @@ namespace TheRecipe
       return errors;
     }
 
+    /// <summary>
+    /// Similar to DbContext.{Dbset}.Local, except this one creates a List to a default loading order
+    /// </summary>
     public void RefreshList()
     {
       List = Db.Ingredients.OrderBy(i => i.Name).ToList();
@@ -71,8 +80,6 @@ namespace TheRecipe
 
       return List;
     }
-
-    // public ObservableCollection<Ingredient> Local => Db.Ingredients.Local;
 
     public override bool Edit(Ingredient item)
     {
