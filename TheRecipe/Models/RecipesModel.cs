@@ -6,9 +6,7 @@ namespace TheRecipe
 
   public partial class RecipesModel : DbContext
   {
-    public RecipesModel() : base("name=TheRecipeModel")
-    {
-    }
+    public RecipesModel() : base("name=TheRecipeModel") { }
 
     public virtual DbSet<Category> Categories { get; set; }
     public virtual DbSet<Ingredient> Ingredients { get; set; }

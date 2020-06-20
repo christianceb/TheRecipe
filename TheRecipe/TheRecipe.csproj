@@ -66,6 +66,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Abstracts\Collection.cs" />
+    <Compile Include="Collections\FavoriteLocalStorage.cs" />
     <Compile Include="Collections\FavoritesLocalStorage.cs" />
     <Compile Include="Collections\Categories.cs" />
     <Compile Include="Collections\Ingredients.cs" />
@@ -79,6 +80,11 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Export\ECategory.cs" />
+    <Compile Include="Models\Export\ERecipe.cs" />
+    <Compile Include="Models\Export\ERecipeIngredient.cs" />
+    <Compile Include="Models\Export\EStep.cs" />
+    <Compile Include="Models\Export\EIngredient.cs" />
     <Compile Include="Models\RecipesModel.cs" />
     <Compile Include="Views\FormRecipe.xaml.cs">
       <DependentUpon>FormRecipe.xaml</DependentUpon>
@@ -93,6 +99,9 @@
     <Compile Include="Models\Recipe.cs" />
     <Compile Include="Models\RecipeIngredient.cs" />
     <Compile Include="Models\Step.cs" />
+    <Compile Include="Views\ViewERecipe.xaml.cs">
+      <DependentUpon>ViewERecipe.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ViewRecipe.xaml.cs">
       <DependentUpon>ViewRecipe.xaml</DependentUpon>
     </Compile>
@@ -107,6 +116,10 @@
     <Page Include="Views\ViewIngredients.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ViewERecipe.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\ViewRecipes.xaml">
       <Generator>MSBuild:Compile</Generator>

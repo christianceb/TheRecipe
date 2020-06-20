@@ -11,6 +11,8 @@
             <MenuItem Header="File">
                 <MenuItem x:Name="MitIngredients" Header="Manage Ingredients" Click="MitIngredients_Click"/>
                 <Separator/>
+                <MenuItem x:Name="MitLoadRecipe" Header="Load Recipe from File" Click="MitLoadRecipe_Click"/>
+                <Separator/>
                 <MenuItem x:Name="MitSave" Header="Save Favorites as" Click="MitSave_Click"/>
                 <MenuItem x:Name="MitLoad" Header="Load Favorites File" Click="MitLoad_Click"/>
                 <Separator/>

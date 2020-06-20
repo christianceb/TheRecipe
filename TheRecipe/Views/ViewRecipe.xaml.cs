@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Forms;
+using MessageBox = System.Windows.MessageBox;
 
 namespace TheRecipe
 {
@@ -9,6 +11,7 @@ namespace TheRecipe
   public partial class ViewRecipe : Window
   {
     private Recipes Recipes;
+    private FavoriteLocalStorage FavoriteLocalStorage = new FavoriteLocalStorage();
 
     public ViewRecipe(Recipes recipes)
     {
@@ -77,6 +80,31 @@ namespace TheRecipe
     internal void Refresh()
     {
       DataContext = Recipes.Current;
+    }
+
+    private void BtnSave_Click(object sender, RoutedEventArgs e)
+    {
+      SaveFileDialog saveFileDialog = new SaveFileDialog();
+      saveFileDialog.Filter = FavoriteLocalStorage.FileDialogFilter;
+      saveFileDialog.Title = "Save favorite recipe as";
+      saveFileDialog.ShowDialog();
+
+      if (!string.IsNullOrWhiteSpace(saveFileDialog.FileName))
+      {
+        if (FavoriteLocalStorage.MaybeCreateFile(saveFileDialog.FileName))
+        {
+          FavoriteLocalStorage.Current = Recipes.Current;
+          FavoriteLocalStorage.Serialise();
+          FavoriteLocalStorage.Close();
+
+          MessageBox.Show(
+            "Recipe saved!",
+            "Success",
+            MessageBoxButton.OK,
+            MessageBoxImage.Information
+          );
+        }
+      }
     }
   }
 }

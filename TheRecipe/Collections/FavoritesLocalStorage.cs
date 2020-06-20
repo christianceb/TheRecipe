@@ -15,7 +15,7 @@ namespace TheRecipe
   /// </summary>
   public class FavoritesLocalStorage
   {
-    BinaryFormatter BFormatter = new BinaryFormatter();
+    readonly BinaryFormatter BFormatter = new BinaryFormatter();
     Stream FileStream;
 
     public List<Recipe> Favorites;
@@ -23,8 +23,8 @@ namespace TheRecipe
     public string FileURI { get; private set; }
     public string FileDialogFilter { get; private set; }
     public string DefaultFilename { get; private set; }
-    string DefaultPath = "%userprofile%\\";
-    string DefaultFileURI;
+    readonly string DefaultPath = "%userprofile%\\";
+    readonly string DefaultFileURI;
 
     public FavoritesLocalStorage()
     {
@@ -128,6 +128,8 @@ namespace TheRecipe
         {
           Close();
           MaybeCreateFile();
+
+          Console.WriteLine(exception.ToString());
         }
       }
 

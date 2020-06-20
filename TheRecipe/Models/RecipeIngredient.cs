@@ -1,6 +1,8 @@
 namespace TheRecipe
 {
+  using System;
   using System.ComponentModel.DataAnnotations;
+  using System.Runtime.Serialization;
 
   public partial class RecipeIngredient
   {

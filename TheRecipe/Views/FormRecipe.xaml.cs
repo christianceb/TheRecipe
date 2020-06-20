@@ -522,21 +522,21 @@ namespace TheRecipe
     private void BtnSaveRecipe_Click(object sender, RoutedEventArgs e)
     {
       List<string> errors = Recipes.Validate(Recipes.Current);
-      bool operationSuccess = false;
+      bool success = false;
 
       if (errors.Count == 0)
       {
         // New Recipes always have 0 as their Id.
         if (Recipes.Current.Id == 0)
         {
-          operationSuccess = Recipes.Add(Recipes.Current);
+          success = Recipes.Add(Recipes.Current);
         }
         else // Existing recipes
         {
-          operationSuccess = Recipes.Save();
+          success = Recipes.Save();
         }
 
-        if (operationSuccess)
+        if (success)
         {
           MessageBox.Show(
             "Recipe saved!",

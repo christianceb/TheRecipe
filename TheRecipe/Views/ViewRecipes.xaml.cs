@@ -286,5 +286,38 @@ namespace TheRecipe
         RefreshFavorites();
       }
     }
+
+    private void MitLoadRecipe_Click(object sender, RoutedEventArgs e)
+    {
+      FavoriteLocalStorage favoriteLocalStorage = new FavoriteLocalStorage();
+
+      OpenFileDialog openFileDialog = new OpenFileDialog();
+      openFileDialog.Filter = favoriteLocalStorage.FileDialogFilter;
+      openFileDialog.Title = "Load favorite recipe file";
+      openFileDialog.ShowDialog();
+
+      if (!string.IsNullOrWhiteSpace(openFileDialog.FileName))
+      {
+        favoriteLocalStorage.MaybeLoad(openFileDialog.FileName);
+
+        if (favoriteLocalStorage.Deserialize())
+        {
+          ViewERecipe viewERecipe = new ViewERecipe(favoriteLocalStorage.ECurrent);
+          viewERecipe.Owner = this;
+          viewERecipe.ShowDialog();
+        }
+        else
+        {
+          MessageBox.Show(
+            "There was an error loading your recipe: " + favoriteLocalStorage.Error,
+            "Operation Failed",
+            MessageBoxButton.OK,
+            MessageBoxImage.Error
+          );
+        }
+
+        favoriteLocalStorage.Close();
+      }
+    }
   }
 }
